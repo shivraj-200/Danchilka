@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | danchilka</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=2) }}">
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Bioplastic 🌱</div>
+    <div class="nav-links">
+        <span>Hello, {{ user_name }}</span>
+        <a href="/">Home</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<!-- DASHBOARD -->
+<section class="dashboard">
+
+    <!-- Welcome -->
+    <div class="dashboard-hero">
+        <h1>Banana Peel Donation 🍌</h1>
+        <p>Help us convert banana waste into eco-friendly bioplastic</p>
+    </div>
+
+    <!-- Donation Form Card -->
+    <div class="donation-card">
+
+        <h2>Donation Details</h2>
+         <a href="/" class="return-home-btn top-home">← Back to Home</a>
+
+        <form method="POST">
+
+    {% if not profile %}
+        <label>Organisation Name</label>
+        <input type="text" name="org_name" required>
+
+        <label>Owner Name</label>
+        <input type="text" name="owner_name" required>
+    {% else %}
+        <p><strong>Organisation:</strong> {{ profile.org_name }}</p>
+        <p><strong>Owner:</strong> {{ profile.owner_name }}</p>
+    {% endif %}
+
+    <label>Address</label>
+    <textarea name="address" required></textarea>
+
+    <label>Banana Peels (kg)</label>
+    <input type="number" name="quantity" required>
+
+    <label>Collection Time</label>
+    <input type="datetime-local" name="collection_time" required>
+
+    <label>Pickup Time</label>
+    <input type="time" name="pickup_time" required>
+
+    <label>Drop-off Time</label>
+    <input type="time" name="drop_time" required>
+
+    <button type="submit">Submit Donation 🍌</button>
+</form>
+    </div>
+{% if donations %}
+<div class="donation-history">
+
+    <h2>My Donation History 🍌</h2>
+
+    {% for d in donations %}
+    <div class="history-card">
+        <p><strong>Address:</strong> {{ d.address }}</p>
+        <p><strong>Quantity:</strong> {{ d.quantity }} kg</p>
+        <p><strong>Collection Time:</strong> {{ d.collection_time }}</p>
+        <p><strong>Pickup Time:</strong> {{ d.pickup_time }}</p>
+        <p><strong>Drop Time:</strong> {{ d.drop_time }}</p>
+    </div>
+    {% endfor %}
+
+</div>
+{% else %}
+<p style="text-align:center;color:#777;margin-top:30px;">
+    No donations yet 🌱
+</p>
+{% endif %}
+
+</section>
+
+<footer>
+    <p>© 2025 Bioplastic Project | Dashboard</p>
+</footer>
+
+</body>
+</html>
