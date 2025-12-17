@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=2) }}">
+
+</head>
+
+<body class="auth-body">
+
+<div class="auth-card">
+    <h2>login in</h2>
+    <p class="auth-subtitle">Use your Bioplastic account</p>
+
+    <form method="POST" action="/login">
+        <input type="email" name="email" placeholder="Email address" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <!-- LOGIN BUTTON -->
+        <button type="submit">log in</button>
+    </form>
+
+    <p class="auth-footer">
+        Don’t have an account?
+        <a href="/signup">Create account</a>
+    </p>
+</div>
+
+</body>
+</html>
