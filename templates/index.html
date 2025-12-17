@@ -1,10 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Danchilka</title>
+    <meta name="description" content="Donate banana peels to create eco-friendly bioplastic. A sustainable waste-to-resource initiative.">
+    <meta name="keywords" content="bioplastic, banana peel, eco friendly, danchilka">
+    <meta name="robots" content="index, follow">
+
+    <meta charset="UTF-8">
+    <title>Danchilka – Banana Peel Bioplastic Initiative</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=2) }}">
 </head>
+
 <body>
-    <h1>Danchilka is LIVE 🚀</h1>
-    <p>If you see this, Flask + Render is working.</p>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Bioplastic</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+
+        {% if session.get("user") %}
+            <span>Hello, {{ user_name }}</span>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/signup">Sign up</a>
+            <a href="/login">Log in</a>
+        {% endif %}
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="hero">
+    <h1>Bioplastic</h1>
+    <p>A Sustainable Alternative to Conventional Plastics</p>
+
+    <div class="hero-buttons">
+        {% if session.get("user") %}
+            <a href="/dashboard" class="btn">Go to Dashboard</a>
+        {% else %}
+            <a href="/signup" class="btn">Get Started</a>
+            <a href="/login" class="btn-outline">Sign in</a>
+        {% endif %}
+    </div>
+</header>
+
+<!-- ANIMATION SECTION -->
+
+<section class="battle-section">
+    <h2 class="battle-title">Nature vs Plastic</h2>
+
+    <div class="battle-arena">
+        <img src="{{ url_for('static', filename='images/banana.png') }}" class="banana">
+        <img src="{{ url_for('static', filename='images/plastic.png') }}" class="plastic">
+
+    </div>
+
+    <p class="battle-text">
+        Bioplastics made from banana waste fight plastic pollution 🌱
+    </p>
+</section>
+
+
+<!-- CONTENT -->
+<section class="content">
+    <h2>What Is Bioplastic?</h2>
+    <p>
+        Bioplastic refers to a broad category of materials that are bio-based,
+        biodegradable, or both. Unlike conventional plastics made from fossil fuels,
+        bioplastics are derived from renewable biological sources such as plants,
+        algae, and agricultural waste like banana peels.
+    </p>
+
+    <h2>Types of Bioplastics</h2>
+    <ul>
+        <li><strong>Bio-Based:</strong> Made from renewable sources</li>
+        <li><strong>Biodegradable:</strong> Breaks down naturally</li>
+        <li><strong>Compostable:</strong> Decomposes fully</li>
+    </ul>
+
+    <h2>Banana-Based Bioplastic</h2>
+    <p>
+        Banana peels and fibers are used to extract starch or cellulose.
+        This waste-based method is eco-friendly and cost-effective.
+    </p>
+
+    <h2>How Bioplastic Is Made</h2>
+    <ol>
+        <li>Collection of banana waste</li>
+        <li>Drying and grinding</li>
+        <li>Starch extraction</li>
+        <li>Mixing with glycerin</li>
+        <li>Heating and molding</li>
+    </ol>
+
+    <h2>Future of Bioplastics</h2>
+    <p>
+        With increasing environmental awareness, bioplastics are expected
+        to replace many single-use plastics in the future.
+    </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Bioplastic Project | Sustainable Future</p>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js', v=2) }}"></script>
+
 </body>
 </html>
